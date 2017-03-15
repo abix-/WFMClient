@@ -13,11 +13,15 @@ module.exports = function (host, apiKey, accountKey) {
    * @param  {String}   method HTTP Verb
    * @param  {Function} done   Called with (err, data) where err is null if no error occurred
    */
-  function makeApiRequest(body, path, method, done) {
+  function makeApiRequest(body, path, method, done, from, to) {
+    var dateQuery = ""
+    if(from != null) {
+      dateQuery = "&from=" + from + "&to=" + to;
+    }
 
     var options = {
       hostname: host,
-      path: path + '?apiKey='+apiKey+'&accountKey='+accountKey,
+      path: path + '?apiKey='+apiKey+'&accountKey='+accountKey+dateQuery,
       method: method
     };
 
@@ -152,8 +156,8 @@ module.exports = function (host, apiKey, accountKey) {
      * Get All Leads
      * * @param  {Function} done Callback that will be called with (err, responseData)
      */
-    getAllLeads: function (done) {
-      makeApiRequest(undefined, '/lead.api/list', 'GET', done)
+    getAllLeads: function (from, to, done) {
+      makeApiRequest(undefined, '/lead.api/list', 'GET', done, from, to)
     },
 
     /**
