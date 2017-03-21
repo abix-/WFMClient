@@ -1,0 +1,7 @@
+<Lead>
+  <Name>{{name}}</Name>
+  <Description>{{description}}</Description>
+  <ClientID>{{clientId}}</ClientID>
+  <OwnerID>{{ownerId}}</OwnerID>
+  <EstimatedValue>{{estimatedValue}}</EstimatedValue>
+</Lead>

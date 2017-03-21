@@ -15,7 +15,7 @@ module.exports = function (host, apiKey, accountKey) {
    */
   function makeApiRequest(body, path, method, done, from, to) {
     var dateQuery = ""
-    if(from != null) {
+    if(from != null && to != null) {
       dateQuery = "&from=" + from + "&to=" + to;
     }
 
@@ -182,6 +182,21 @@ module.exports = function (host, apiKey, accountKey) {
      */
     getClient: function (id,done) {
       makeApiRequest(undefined, '/client.api/get/' + id, 'GET', done)
+    },
+
+    /**
+     * Posts a new Lead object to Workflow Max
+     */
+    createLead: function (name, description, clientId, ownerId, estimatedValue, done) {
+      var body = templates.lead.create({
+        name: name,
+        description: description,
+        clientId: clientId,
+        ownerId: ownerId,
+        estimatedValue: estimatedValue
+      });
+
+      makeApiRequest(body, '/lead.api/add', 'POST', done);
     }
   };
 };
