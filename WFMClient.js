@@ -166,6 +166,22 @@ module.exports = function (host, apiKey, accountKey) {
      */
     getAllClients: function (done) {
       makeApiRequest(undefined, '/client.api/list', 'GET', done)
+    },
+
+    /**
+     * Get a Lead
+     * * @param  {Function} done Callback that will be called with (err, responseData)
+     */
+    getLead: function (id,done) {
+      makeApiRequest(undefined, '/lead.api/get/' + id, 'GET', done)
+    },
+    
+    /**
+     * Get a Client
+     * * @param  {Function} done Callback that will be called with (err, responseData)
+     */
+    getClient: function (id,done) {
+      makeApiRequest(undefined, '/client.api/get/' + id, 'GET', done)
     }
   };
 };
